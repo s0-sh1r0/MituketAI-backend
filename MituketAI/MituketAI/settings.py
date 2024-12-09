@@ -73,24 +73,25 @@ WSGI_APPLICATION = "MituketAI.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+#DATABASES = {
+#       "ENGINE": "django.db.backends.sqlite3",
+ #       "NAME": BASE_DIR / "db.sqlite3",
+  #  }
+#}
+
+from decouple import config
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',  # MySQL用のエンジン
+        'NAME': config('DB_NAME'),            # データベース名
+        'USER': config('DB_USER'),            # ユーザー名
+        'PASSWORD': config('DB_PASSWORD'),    # パスワード
+        'HOST': config('DB_HOST', default='localhost'),  # ホスト
+        'PORT': config('DB_PORT', default='3306'),       # ポート番号
     }
 }
 
-# from decouple import config
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': config('DATABASE_NAME'),
-#         'USER': config('DATABASE_USER'),
-#         'PASSWORD': config('DATABASE_PASSWORD'),
-#         'HOST': config('DATABASE_HOST'),
-#         'PORT': config('DATABASE_PORT'),
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
