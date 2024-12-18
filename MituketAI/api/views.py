@@ -3,6 +3,9 @@ from .models import Item, Register, Result
 from .serializers import ItemSerializer, RegisterSerializer, ResultSerializer
 from rest_framework.filters import SearchFilter
 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
@@ -20,3 +23,8 @@ class RegisterRankingViewSet(viewsets.ModelViewSet):
 class RegisterResultViewSet(viewsets.ModelViewSet):
     queryset = Result.objects.all()
     serializer_class = ResultSerializer
+
+@api_view(['GET'])
+def test_endpoint(request):
+    print("httpリクエストがありました")
+    return JsonResponse({"message": "Success!"})

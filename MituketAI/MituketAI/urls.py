@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from api.views import ItemViewSet, RegisterViewSet, RegisterRankingViewSet,RegisterResultViewSet
+from api.views import test_endpoint
 
 # DefaultRouterを使用してルートを自動生成
 router = DefaultRouter()
@@ -30,4 +31,5 @@ router.register(r'results', RegisterResultViewSet, basename='result')
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include(router.urls)),  # routerのURLを含める
+    path('api/test/', test_endpoint, name='test-endpoint'), # 通信テスト用
 ]

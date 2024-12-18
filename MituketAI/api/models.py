@@ -42,3 +42,11 @@ class Result(models.Model):
 
     def __str__(self):
         return f'count: {self.count}, avg: {self.avg}'
+
+class Image(models.Model):
+    title = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='images/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
